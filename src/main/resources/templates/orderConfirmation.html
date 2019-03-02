@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragment/header :: common-header" />
+
+<body>
+
+	<div th:replace="fragment/header :: navbar"></div>
+	<div style="background-color: #0A0909; height: 50px;"></div>
+	<div class="container">
+
+		<h2>Order Confirmation</h2>
+		<p style="font-size: 150%;">Dear [[${userEmail}]] your order has
+			been confirmed. Your items will be delivered in 7 days Thank you for
+			shopping with us. Please visit our site for more items !!</p>
+
+		<a th:href="@{'/itemShow?category=all'}">
+			<button type="button" class="btn btn-primary btn-lg"
+				th:text="ContinueShopping">Continue Shopping</button>
+		</a>
+	</div>
+	<div th:replace="fragment/header :: body-bottom-scripts"></div>
+
+</body>
+</html>

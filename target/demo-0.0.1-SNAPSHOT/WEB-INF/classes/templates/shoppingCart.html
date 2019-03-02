@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragment/header :: common-header" />
+
+<body>
+
+	<div th:replace="fragment/header :: navbar"></div>
+	<div style="background-color: #0A0909; height: 50px;"></div>
+	<div class="container">
+	<div th:if="${emptyCart}" class="alert alert-warning">
+						Your cart is empty.</div>
+		<div class="table">
+			<h2>Shopping Cart</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Item name</th>
+						<th>Item size</th>
+						<th>Item quantity</th>
+						<th>Price</th>
+						<th>    </th>
+					</tr>
+				</thead>
+				<tbody th:each="itemInCart : ${cartList}">
+					<tr>
+						<td><a th:text="${itemInCart.itemName}"
+							th:href="@{/itemDetails?id=}+${itemInCart.itemId}">Name</a> <br>
+ 						</td>
+						<td><div th:text="${itemInCart.sizeOrdered}">Size</div>
+						<td><div th:text="${itemInCart.qtyOrdered}">Quantity</div>
+						<td><div th:text="${itemInCart.itemTotal}">Price</div>
+					<td><div> <a th:href="@{'/shoppingCart/removeItem/{id}'(id=${itemInCart.cartId})}"><font color="red">Delete</font></a>
+						</div></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+  		<div th:unless="${emptyCart}">			
+	  		<form th:action="@{/shoppingCart/orderConfirmation}" method="post"> 
+  			<div class="col-xs-3">
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#demo">Checkout</button>
+  				<div id="demo" class="collapse"> 			
+	  			<div th:replace="fragment/header :: checkout"></div>
+  				</div>
+  			</div>
+	  		</form>
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-3">
+				<h3 th:inline="text">Total: $[[${grandTotal}]]</h3> </div>
+		</div>
+			<div class="col-xs-3">
+				<a th:href="@{'/itemShow?category=all'}">
+				<button type="button" class="btn btn-primary btn-lg" th:text="ContinueShopping">Continue Shopping</button> </a>
+			</div>
+	</div>
+
+	<div th:replace="fragment/header :: body-bottom-scripts"></div>
+</body>
+</html>

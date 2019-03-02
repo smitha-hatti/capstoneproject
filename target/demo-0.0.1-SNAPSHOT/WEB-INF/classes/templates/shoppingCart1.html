@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragment/header :: common-header" />
+
+<body>
+
+	<div th:replace="fragment/header :: navbar"></div>
+	<div style="background-color: #0A0909; height: 50px;"></div>
+	<div class="container">
+	<div th:if="${emptyCart}" class="alert alert-warning">
+						Your cart is empty.</div>
+
+	<hr
+style="position: absolute; width: 85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+<form action="@{'/shoppingCart/checkout'}">
+		<div class="table">
+			<h2>Shopping Cart</h2>
+			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Item name</th>
+						<th>Item size</th>
+						<th>Item quantity</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody th:each="itemInCart : ${cartList}">
+					<tr>
+						<td><a th:text="${itemInCart.itemName}"
+							th:href="@{/itemDetails?id=}+${itemInCart.itemId}">Name</a> <br> 							
+ 					<a th:href="@{'/shoppingCart/removeItem/{id}'(id=${itemInCart.cartId})}"> Delete </a>
+ 													
+						</td>
+						<td><div th:text="${itemInCart.sizeOrdered}">Size</div>
+						<td><div th:text="${itemInCart.qtyOrdered}">Quantity</div>
+						<td><div th:text="${itemInCart.itemTotal}">Price</div>
+					</tr>
+				</tbody>
+			</table>
+			  <input type="submit" value="Checkout">		
+		</div>
+	</form>
+	</div>
+	
+	<div th:replace="fragment/header :: body-bottom-scripts"></div>
+</body>
+</html>

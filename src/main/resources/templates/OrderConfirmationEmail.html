@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/css/non-responsive.css" rel="stylesheet" />
+
+<link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+
+<style>
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<!-- <p>Dear <span th:text="${userConfirmed.getName()}"></span>,</p>
+ -->
+	<br />
+	<p>Thank you for shopping from our site. We hope you had a good
+		time with our service!</p>
+	<p>Your order number is: 67765718></p>
+	<h2>Order Summary</h2>
+	<hr />
+
+	<!-- <table>
+	<tr>
+		<th>Billing Detail</th>
+		<th>Payment Information</th>
+		<th>Shipping Address</th>
+	</tr>
+	<tr>
+		<td>
+			<span th:text="${order.billingAddress.billingAddressName}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressCity}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressState}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressZipcode}"></span><br/>
+		</td>
+		<td>
+			<span th:text="${order.payment.holderName}"></span><br/>
+			<span th:text="${order.payment.type}"></span><br/>
+			<span th:text="${order.payment.cardNumber}"></span><br/>
+			<span th:text="${order.payment.expiryMonth}"></span><br/>
+			<span th:text="${order.payment.expiryYear}"></span><br/>
+		</td>
+		<td>
+			<span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br/>
+		</td>
+	</tr>
+</table> -->
+
+	<h3>
+		<strong>Order Summary</strong>
+	</h3>
+	<table>
+		<thead>
+			<tr>
+				<td><strong>Item Name</strong></td>
+				<td class="text-right"><strong>Size Ordered</strong></td>
+				<td class="text-center"><strong>Item Quantity</strong></td>
+				<td class="text-center"><strong>Item Price</strong></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cartItem : ${cartItemsByUserID}">
+				<td><span data-th-text="${cartItem.itemName}"></span></td>
+				<td><span data-th-text="${cartItem.sizeOrdered}"></span></td>
+				<td class="text-center" data-th-text="${cartItem.qtyOrdered}"></td>
+				<td th:inline="text">$ [[${cartItem.itemTotal}]]</td>				
+			</tr>
+			<tr>
+				<td class="highrow"></td>
+				<td class="highrow"></td>
+				<td class="highrow text-center"><strong>Grand total</strong></td>
+<!--  				<td class="text-center" data-th-text = "${grandTotal}"></td>  -->
+ 				<td th:inline="text">$ [[${grandTotal}]]</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<p>Best,</p>
+	<p>One Stop Shoppe</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragment/header :: common-header" />
+
+<body>
+
+	<div th:replace="fragment/header :: navbar"></div>
+	<div style="background-color: #0A0909; height: 50px;"></div>
+	<div class="container-fluid" style="margin-top: 30px;">
+
+<h4><span th:utext="${successMessage}"></span></h4>
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form th:action="@{/login}" method="post">
+                <fieldset>
+
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">
+                            Invalid username and password.
+                        </div>
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">
+                            You have been logged out.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="email" id="email" class="form-control input-lg"
+                               placeholder="Email" required="true" autofocus="true"/>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control input-lg"
+                               placeholder="Password" required="true"/>
+                    </div>
+
+                    <div class="container">
+                        <input type="submit" class="btn btn-dark btn-lg" value="Login" />
+                    </div>
+                    
+                 </fieldset>
+            </form>
+            
+        </div>
+    </div>
+
+</div>
+
+	
+</body>
+</html>

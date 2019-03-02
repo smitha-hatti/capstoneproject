@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="fragment/header :: common-header" />
+<style>
+	.thumbnail {
+		padding: 0 0 15px 0;
+		border: none;
+		border-radius: 0;
+		width: 90%;
+		height: 90%;
+	}
+	.row {
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+</style>
+<body>
+
+	<div th:replace="fragment/header :: navbar"></div>
+	<div style="background-color: #0A0909; height: 50px;"></div>
+	<div class="row" >
+
+	<div th:each="item : ${itemList}">
+<!--  	<div class="col-md-6 col-md-3"> -->
+  	<div class="col-sm-4 col-xs-6"> 
+    <div class="thumbnail">
+      <a th:href="@{/itemDetails?id=}+${item.id}"> <img th:src="@{${item.image}}" class="img-thumbnail" /></a>
+      <div class="caption">
+        	<a th:href="@{/itemDetails?id=}+${item.id}"> <h4 th:text="${item.itemName}" style="text-align:center;">Name</h4> </a>
+        <h4 th:inline="text" style="text-align:center;">Price: $[[${item.itemPrice}]] </h4>  
+      </div>
+    </div>
+</div>
+</div>
+</div>
+<div th:replace="fragment/header :: body-bottom-scripts"></div>
+</body>
+</html>
